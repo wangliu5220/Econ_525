@@ -28,6 +28,7 @@ panel = crsp.merge(llm, on=["TICKER", "date"], how="left")
 # =============================================================================
 # 3. COMPOSITE SIGNAL
 # =============================================================================
+panel["composite_weighted"] = (panel["llm_sentiment"] + 0.5 * panel[["tangibility", "relevance"]].mean(axis=1))
 panel["composite"] = panel[["llm_sentiment", "tangibility", "relevance"]].mean(axis=1)
 panel.to_csv("Portfolio/merged_panel.csv", index=False)
 
@@ -47,6 +48,7 @@ SIGNALS = {
     "tangibility":   "tangibility",
     "relevance":     "relevance",
     "composite":     "composite",
+    "composite_weighted": "composite_weighted",
 }
 
 def tercile_ls(df, signal_col):
@@ -98,6 +100,7 @@ for s in strat_cols:
 sharpe_df = pd.DataFrame.from_dict(sharpes, orient="index", columns=["annualised_sharpe"])
 sharpe_df.index.name = "strategy"
 
+
 # =============================================================================
 # 7. FAMA-FRENCH FACTOR PLACEHOLDERS
 # =============================================================================
@@ -124,6 +127,7 @@ for s, v in sharpes.items():
 
 print("\nDaily Long-Short Return Summary:")
 print(ls_df[strat_cols].describe().round(6).to_string())
+
 
 print("\nSaved: portfolio_results.csv, sharpe_ratios.csv")
 print("NOTE: mkt_rf, smb, hml, rf are NaN placeholders -- merge FF3 daily data before running alpha regressions.")
