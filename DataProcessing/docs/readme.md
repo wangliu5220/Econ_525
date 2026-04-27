@@ -6,28 +6,15 @@ ECON 525 — Empirical Research Project
 
 Uses the Gemini API to score financial news headlines for tangibility, relevance, and sentiment, then tests whether these LLM signals generate alpha beyond RavenPack's ESS metric across a 30-stock AI-equity universe (2023–2024).
 
-## Repository Structure
-
-```
-├── DataProcessing/    # Dataset building, LLM scoring, and validation
-│   ├── scripts/
-│   ├── data/
-│   ├── docs/
-│   ├── requirements.txt
-│   └── .env.example
-└── Portfolio/         # Portfolio construction and factor regressions
-```
-
 ## Setup
 
 **Requirements:** Python 3.10+
 
 ```bash
-cd DataProcessing
 pip install -r requirements.txt
 ```
 
-**API key:** Create a `.env` file in `DataProcessing/`:
+**API key:** Create a `.env` file in the project root:
 
 ```
 GEMINI_API_KEY=your_key_here
@@ -35,7 +22,7 @@ GEMINI_API_KEY=your_key_here
 
 ## Pipeline
 
-Run from `DataProcessing/` in order:
+Run from the project root in order:
 
 ### 1. Build datasets
 
@@ -73,11 +60,11 @@ Runs coverage, null-rate, distribution, and validation-correlation checks, then 
 
 | File | Description |
 |---|---|
-| `DataProcessing/data/crsp_ai_sec_1.csv` | CRSP daily returns, 30 AI equities, 2023–2024 |
-| `DataProcessing/data/F-F_Research_Data_Factors_daily.csv` | Fama-French 3-factor daily data |
-| `DataProcessing/data/control_dataset_ready.csv` | CRSP + RavenPack ESS merged *(pre-generated)* |
-| `DataProcessing/data/llm_input_prompts.csv` | Deduplicated headlines for LLM scoring *(pre-generated)* |
-| `DataProcessing/data/llm_scores_headline.csv` | Headline-level LLM scores *(pre-generated)* |
-| `DataProcessing/data/llm_scores_daily.csv` | Daily-aggregated LLM scores *(pre-generated)* |
-| `DataProcessing/data/validation_set.csv` | 40 hand-labeled validation headlines |
-| `DataProcessing/data/validation_set_scored.csv` | Validation set with LLM scores |
+| `data/crsp_ai_sec_1.csv` | CRSP daily returns, 30 AI equities, 2023–2024 |
+| `data/F-F_Research_Data_Factors_daily.csv` | Fama-French 3-factor daily data |
+| `data/control_dataset_ready.csv` | CRSP + RavenPack ESS merged *(pre-generated)* |
+| `data/llm_input_prompts.csv` | Deduplicated headlines for LLM scoring *(pre-generated)* |
+| `data/llm_scores_headline.csv` | Headline-level LLM scores *(pre-generated)* |
+| `data/llm_scores_daily.csv` | Daily-aggregated LLM scores *(pre-generated)* |
+| `data/validation_set.csv` | 40 hand-labeled validation headlines |
+| `data/validation_set_scored.csv` | Validation set with LLM scores |

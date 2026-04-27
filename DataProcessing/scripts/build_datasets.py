@@ -1,24 +1,16 @@
 """
-build_datasets.py
-=================
 Pipeline to clean, align, and merge CRSP daily returns with RavenPack news
 analytics for an empirical asset-pricing study.
 
 Outputs (written to ../data/):
-    1. control_dataset_ready.csv   – CRSP returns LEFT-joined with daily-aggregated ESS
-    2. llm_input_prompts.csv       – Deduplicated headlines/snippets mapped to trading dates
-
-Usage:
-    python scripts/build_datasets.py
+    control_dataset_ready.csv   – CRSP returns LEFT-joined with daily-aggregated ESS
+    llm_input_prompts.csv       – Deduplicated headlines/snippets mapped to trading dates
 """
 
 import pathlib
 import numpy as np
 import pandas as pd
 
-# ---------------------------------------------------------------------------
-# Paths
-# ---------------------------------------------------------------------------
 PROJECT_DIR = pathlib.Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_DIR / "data"
 
@@ -28,18 +20,14 @@ RP_PATH = DATA_DIR / "ravenpack_ai_sec_1.csv"
 OUT_CONTROL = DATA_DIR / "control_dataset_ready.csv"
 OUT_LLM = DATA_DIR / "llm_input_prompts.csv"
 
-# ---------------------------------------------------------------------------
 # Config
-# ---------------------------------------------------------------------------
 RP_CHUNK_SIZE = 500_000          # rows per chunk when streaming RavenPack
 RELEVANCE_FLOOR = 75             # minimum event_relevance to keep
 NEUTRAL_ESS = 0                  # fill for trading days with no news (ESS is on -1 to 1 scale)
 MARKET_CLOSE_ET = 16             # 4 PM Eastern (hour boundary)
 
-# ---------------------------------------------------------------------------
-# Phase 1: CRSP Cleaning (load first — small file, needed for trading calendar)
-# ---------------------------------------------------------------------------
-print("[Phase 1] Loading and cleaning CRSP data …")
+# CRSP cleaning — loaded first, needed to build the trading calendar
+print("Loading CRSP data...")
 
 crsp = pd.read_csv(CRSP_PATH)
 crsp.columns = crsp.columns.str.strip()
@@ -59,11 +47,17 @@ crsp["SHROUT"] = pd.to_numeric(crsp["SHROUT"], errors="coerce")
 # Uppercase ticker for merge key
 crsp["TICKER"] = crsp["TICKER"].astype(str).str.strip().str.upper()
 
+# Restrict to the 30 target AI-exposed equities (drops spurious AAIC, METV, etc.)
+AI_TICKERS = {
+    "AAPL", "ADBE", "AI", "AMD", "AMZN", "ARM", "ASML", "AVGO", "CEG", "CRM",
+    "CRWD", "DDOG", "DLR", "EQIX", "GOOGL", "IBM", "INTC", "META", "MSFT", "MU",
+    "NOW", "NVDA", "ORCL", "PLTR", "QCOM", "SMCI", "SNOW", "TLN", "TSM", "VRT",
+}
+crsp = crsp[crsp["TICKER"].isin(AI_TICKERS)].copy()
+
 print(f"  CRSP rows after cleaning: {len(crsp):,}")
 
-# ---------------------------------------------------------------------------
-# Build trading-day calendar from CRSP (handles weekends + holidays)
-# ---------------------------------------------------------------------------
+# Trading-day calendar built from CRSP (handles weekends and holidays)
 trading_days = np.sort(crsp["date"].unique())
 trading_days_set = set(trading_days)
 
@@ -124,11 +118,8 @@ def effective_trading_date(ts_eastern: pd.Series) -> pd.Series:
 
     return pd.Series(result, index=ts_eastern.index, dtype="datetime64[ns]")
 
-# ---------------------------------------------------------------------------
-# Phase 2: RavenPack Cleaning → Timezone Alignment → Aggregation
-# (Streamed in chunks to stay within memory budget)
-# ---------------------------------------------------------------------------
-print("[Phase 2] Streaming RavenPack data in chunks …")
+# RavenPack: clean, align to trading dates, aggregate (streamed in chunks)
+print("Streaming RavenPack data...")
 
 agg_pieces: list[pd.DataFrame] = []      # for control dataset (aggregated)
 llm_pieces: list[pd.DataFrame] = []      # for LLM input (row-level)
@@ -201,9 +192,7 @@ for chunk in pd.read_csv(RP_PATH, chunksize=RP_CHUNK_SIZE, low_memory=False):
 
 print(f"  … finished. Total chunks: {chunks_processed}")
 
-# ---------------------------------------------------------------------------
-# Combine all chunk-level aggregates, then re-aggregate across chunk boundaries
-# ---------------------------------------------------------------------------
+# Combine chunk aggregates and re-aggregate across chunk boundaries
 if not agg_pieces:
     print("  WARNING: No RavenPack rows survived filtering. Outputs will have no sentiment data.")
     rp_agg = pd.DataFrame(columns=["TICKER", "Effective_Trading_Date", "avg_ess", "news_count"])
@@ -221,10 +210,8 @@ else:
 
 print(f"  Aggregated RavenPack: {len(rp_agg):,} ticker-days with news")
 
-# ---------------------------------------------------------------------------
-# Phase 3: Merge CRSP ← RavenPack (left join)
-# ---------------------------------------------------------------------------
-print("[Phase 3] Merging CRSP with aggregated RavenPack …")
+# Merge CRSP with RavenPack (left join)
+print("Merging CRSP with RavenPack...")
 
 merged = crsp.merge(
     rp_agg,
@@ -242,10 +229,8 @@ merged.drop(columns=["Effective_Trading_Date"], inplace=True, errors="ignore")
 
 print(f"  Merged dataset rows: {len(merged):,}")
 
-# ---------------------------------------------------------------------------
-# Phase 4: Save Outputs
-# ---------------------------------------------------------------------------
-print("[Phase 4] Writing output files …")
+# Save outputs
+print("Writing output files...")
 
 # Output 1 – Control dataset
 merged.sort_values(["date", "TICKER"], inplace=True)

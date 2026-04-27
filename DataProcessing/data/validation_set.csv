@@ -1,0 +1,41 @@
+row_id,Effective_Trading_Date,TICKER,headline,event_text,manual_tangibility,manual_relevance,manual_sentiment,category
+417,2023-01-13,TSM,TSMC's 2023 Earnings Outlook Appears Positive -- Market Talk,Tsmc's 2023 Earnings,,,,earnings_beat
+894,2023-01-26,IBM,"IBM Plans to Cut 3,900 Jobs  After Revenue Edges Down  ----  By Denny Jacob",Ibm stock was down about 2% in after-hours,,,,earnings_miss
+1617,2023-02-06,ORCL,Oracle Corp. Stock Outperforms Market On Strong Trading Day,Shares of Oracle Corp. (ORCL) inched 0.27% higher to $89.62 Friday,,,,bare_minimal
+2101,2023-02-21,MSFT,Apica Introduces New Microsoft 365 Monitoring Suite,"Observability, announced the rollout of its Microsoft 365",,,,partnership
+2132,2023-02-22,AMZN,Amazon.com: Acquisition of One Medical Completed >AMZN,Amazon.com: Acquisition of One Medical Completed,,,,contract_ma
+2170,2023-02-22,INTC,Intel Corp. Slashes Quarterly Dividend by 66% -- WSJ,Intel Corp. Slashes Quarterly Dividend by 66%,,,,earnings_miss
+2383,2023-02-27,MSFT,"Amdocs and Microsoft Expand Strategic Partnership to Reimagine the Telco Experience, Introduce Intelligent Customer Engagement Platform",Amdocs and Microsoft Expand Strategic Partnership to,,,,partnership
+3210,2023-03-22,PLTR,"Palantir Technologies Inc. Stock Rises Tuesday, Outperforms Market",Palantir Technologies Inc. Stock Rises Tuesday,,,,bare_minimal
+4236,2023-04-26,GOOGL,Google Ad Revenue Drops for Second Straight Quarter -- WSJ,Google Ad Revenue Drops,,,,earnings_miss
+4473,2023-04-27,NOW,ServiceNow Sees 2Q Subscription Revenue $2.04B-$2.05B>NOW,Servicenow Sees 2Q Subscription Revenue $2.04B-$2.05B>NOW,,,,earnings_beat
+5063,2023-05-12,PLTR,"Palantir Technologies Inc. Stock Falls Thursday, Underperforms Market",Shares of Palantir Technologies Inc. (PLTR) shed 0.60% to $9.88,,,,analyst_downgrade
+5279,2023-05-22,META,Meta Fined $1.3 Billion Over Data Transfers to U.S. -- WSJ,Facebook owner Meta Platforms was fined $1.3 billion by European Union,,,,contract_ma
+5327,2023-05-23,GOOGL,Cohesity Announces Partnership with Google Cloud to Help Organizations Unlock the Power of Generative AI and Data,Cohesity Announces Partnership with Google Cloud,,,,partnership
+5559,2023-05-26,MU,"Micron Technology Inc. Stock Rises Thursday, Outperforms Market",Shares of Micron Technology Inc. (MU) rallied 4.63% to $69.61 Thursday,,,,analyst_upgrade
+5617,2023-05-30,MSFT,Microsoft Is Maintained at Outperform by Wedbush,Microsoft Is Maintained at Outperform by Wedbush,,,,analyst_upgrade
+6975,2023-07-07,AMZN,MW Amazon has made $1.9 billion on Rivian's stock in just 8 trading days,Amazon shares have gone up 26.5%,,,,contract_ma
+7398,2023-07-19,MSFT,Microsoft Shows AI Won't Be a Loss Leader -- Heard on the Street -- WSJ,Microsoft announced long-awaited pricing Tuesday for its Copilot,,,,earnings_miss
+7862,2023-07-28,INTC,Intel 2Q Adj EPS 13c >INTC,Intel 2Q Adj EPS 13c,,,,earnings_miss
+7925,2023-07-31,CRM,"Salesforce Inc. Stock Rises Friday, Still Underperforms Market",Shares of Salesforce Inc. (CRM) inched 0.20% higher to $225.60 Friday,,,,bare_minimal
+8765,2023-08-23,AMZN,LG ELECTRONICS AND AMAZON TEAM UP TO LAUNCH LUNA ON LG SMART TVS,Lg ELECTRONICS AND AMAZON TEAM UP TO LAUNCH LUNA,,,,partnership
+9135,2023-08-31,CRWD,CrowdStrike Earnings Top Views; Outlook Mixed As Okta Jumps On Solid Beat -- IBD,Crowdstrike Holdings on Wednesday reported July-quarter earnings and revenue that topped Wall Street estimates,,,,earnings_beat
+9920,2023-09-25,AMZN,AI Race Heats Up: Amazon Investing Up To $4 Billion In OpenAI Rival -- IBD,Amazon Investing Up To $4 Billion In OpenAI,,,,contract_ma
+10119,2023-10-02,EQIX,"Equinix Inc. Stock Rises Friday, Outperforms Market",Shares of Equinix Inc. (EQIX) inched 0.73% higher to $726.26 Friday,,,,bare_minimal
+10507,2023-10-17,AMZN,Amazon Price Target Announced at $173.00/Share by Stifel,Amazon Price Target Announced at $173.00/Share by Stifel,,,,analyst_upgrade
+11475,2023-11-08,DLR,"Digital Realty Trust Inc. Stock Falls Tuesday, Underperforms Market",Shares of Digital Realty Trust Inc. (DLR) slipped 1.17% to $127.98,,,,analyst_downgrade
+11853,2023-11-21,AAPL,"Apple Inc. Stock Rises Monday, Still Underperforms Market",Shares of Apple Inc. (AAPL) inched 0.93% higher to $191.45 Monday,,,,vague_mover
+12449,2023-12-08,AVGO,Broadcom Earnings Edge By Estimates; VMware Deal Raises Outlook -- IBD,Broadcom on Thursday reported fiscal fourth quarter earnings,,,,contract_ma
+12833,2023-12-21,MU,"Micron Technology Inc. Stock Falls Wednesday, Underperforms Market",Shares of Micron Technology Inc. (MU) slipped 4.24% to $78.69,,,,analyst_downgrade
+13464,2024-01-16,MSFT,"Press Release: Vodafone and Microsoft sign 10-year strategic partnership to bring generative AI, digital services and the cloud to more than 300 million businesses and consumers",Vodafone and Microsoft sign 10-year strategic partnership,,,,partnership
+14416,2024-02-02,AMZN,Amazon Stock Jumps After Q4 Earnings Top Expectations -- IBD,Amazon Stock Jumps After Q4,,,,earnings_beat
+14543,2024-02-02,NVDA,"NVIDIA Corp. Stock Rises Thursday, Outperforms Market",Shares of NVIDIA Corp. (NVDA) rose 2.44% to $630.27 Thursday,,,,vague_mover
+16547,2024-03-21,QCOM,Qualcomm Inc. Stock Outperforms Competitors On Strong Trading Day,Shares of Qualcomm Inc. (QCOM) rallied 2.18% to $167.67 Wednesday,,,,vague_mover
+18822,2024-05-23,NVDA,Nvidia 1Q EPS $5.98 >NVDA,1Q EPS $5.98 >NVDA,,,,earnings_beat
+20060,2024-07-08,NOW,ServiceNow Cut to Sell From Neutral by Guggenheim,Servicenow Cut to Sell From Neutral by Guggenheim,,,,analyst_downgrade
+20665,2024-07-25,NOW,ServiceNow Price Target Raised to $900.00/Share From $820.00 by Stifel,Servicenow Price Target Raised to $900.00/Share From $820.00 by Stifel,,,,analyst_upgrade
+21545,2024-08-16,AVGO,Broadcom Inc. Stock Outperforms Competitors On Strong Trading Day,Shares of Broadcom Inc. (AVGO) rose 5.35% to $166.13 Thursday,,,,vague_mover
+22129,2024-09-04,VRT,Press Release: Vertiv Declares Quarterly Dividend,Vertiv Declares Quarterly Dividend,,,,bare_minimal
+23226,2024-10-02,GOOGL,Alphabet Price Target Cut to $182.00/Share From $190.00 by Wells Fargo,Alphabet Price Target Cut to $182.00/Share From $190.00 by Wells Fargo,,,,analyst_downgrade
+23562,2024-10-14,META,Meta Platforms Inc. Stock Outperforms Competitors On Strong Trading Day,Shares of Meta Platforms Inc. (META) rallied 1.05% to $589.95 Friday,,,,vague_mover
+23897,2024-10-23,ORCL,Oracle Price Target Announced at $165.00/Share by RBC Capital,Oracle Price Target Announced at $165.00/Share by RBC Capital,,,,analyst_upgrade

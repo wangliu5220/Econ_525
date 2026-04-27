@@ -1,0 +1,6 @@
+google-genai>=1.0.0
+python-dotenv
+pandas
+numpy
+pydantic>=2.0
+matplotlib
