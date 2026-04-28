@@ -1,6 +1,7 @@
 import pandas as pd
 
-#create long short returns with ff3 data
+#create long short returns with ff3 data 
+#this is the script that creates long_short_returns_ff3
 
 #load ff3 data and long short returns data
 ls_df = pd.read_csv("Portfolio/portfolio_results.csv", parse_dates=["date"])

@@ -182,3 +182,48 @@ print("="*65)
 print(table3.round(6).to_string())
 
 print("\nSaved: table2_summary.csv, table3_regressions.csv")
+
+# =============================================================================
+# 8. TABLE 4 — ALPHA DIFFERENCE (HYPOTHESIS TEST) REGRESSIONS
+# =============================================================================
+
+rows = []
+
+comparisons = [
+    ("LLM Sentiment - ESS", "llm_sentiment", "ess"),
+    ("Composite - LLM Sentiment", "composite", "llm_sentiment"),
+    ("Composite - Tangibility", "composite", "tangibility"),
+    ("Composite - Relevance", "composite", "relevance"),
+]
+
+for name, a, b in comparisons:
+    sub = ls_df[["date", a, b, "mkt_rf", "smb", "hml", "rf"]].dropna()
+
+    # Construct difference in excess returns
+    y = (sub[a] - sub["rf"]) - (sub[b] - sub["rf"])
+    X = sm.add_constant(sub[FACTORS])
+
+    model = sm.OLS(y, X).fit(cov_type="HAC", cov_kwds={"maxlags": 5})
+
+    rows.append({
+        "comparison": name,
+        "alpha_diff_bp": model.params["const"] * 10000,  # convert to basis points
+        "t_stat": model.tvalues["const"],
+        "p_value_two_sided": model.pvalues["const"],
+        "p_value_one_sided": model.pvalues["const"]/2 if model.tvalues["const"] > 0 else 1 - model.pvalues["const"]/2,
+        "beta_mkt": model.params["mkt_rf"],
+        "beta_smb": model.params["smb"],
+        "beta_hml": model.params["hml"],
+        "r_squared": model.rsquared,
+        "n_obs": int(model.nobs)
+    })
+
+table4 = pd.DataFrame(rows).set_index("comparison")
+
+# Save
+table4.to_csv("Portfolio/table4_alpha_differences.csv")
+
+print("\n" + "="*65)
+print("TABLE 4 — Alpha Difference Regression Results")
+print("="*65)
+print(table4.round(4).to_string())
