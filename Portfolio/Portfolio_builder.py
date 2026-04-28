@@ -6,8 +6,8 @@ TRADING_DAYS_PER_YEAR = 252
 # =============================================================================
 # 1. LOAD DATA
 # =============================================================================
-crsp = pd.read_csv("control_dataset_ready.csv", parse_dates=["date"])
-llm  = pd.read_csv("docs/llm_scores_daily.csv", parse_dates=["Effective_Trading_Date"])
+crsp = pd.read_csv("DataProcessing\data\control_dataset_ready.csv", parse_dates=["date"])
+llm  = pd.read_csv("DataProcessing\data\llm_scores_daily.csv", parse_dates=["Effective_Trading_Date"])
 
 llm = llm.rename(columns={
     "Effective_Trading_Date": "date",
@@ -28,9 +28,9 @@ panel = crsp.merge(llm, on=["TICKER", "date"], how="left")
 # =============================================================================
 # 3. COMPOSITE SIGNAL
 # =============================================================================
-panel["composite_weighted"] = (panel["llm_sentiment"] + 0.5 * panel[["tangibility", "relevance"]].mean(axis=1))
+# panel["composite_weighted"] = (panel["llm_sentiment"] + 0.5 * panel[["tangibility", "relevance"]].mean(axis=1))
 panel["composite"] = panel[["llm_sentiment", "tangibility", "relevance"]].mean(axis=1)
-panel.to_csv("Portfolio/merged_panel.csv", index=False)
+# panel.to_csv("Portfolio/merged_panel.csv", index=False)
 
 
 # =============================================================================
@@ -48,7 +48,7 @@ SIGNALS = {
     "tangibility":   "tangibility",
     "relevance":     "relevance",
     "composite":     "composite",
-    "composite_weighted": "composite_weighted",
+    # "composite_weighted": "composite_weighted",
 }
 
 def tercile_ls(df, signal_col):

@@ -56,6 +56,16 @@ Runs coverage, null-rate, distribution, and validation-correlation checks, then 
 - `data/llm_scores_daily.csv` — daily-aggregated scores by ticker (8,995 rows)
 - `data/score_distributions.png` — score distribution histograms
 
+### 4. Generate Signal Portfolios
+
+```bash
+python Portfolio/Portfolio_builder.py
+```
+Generates trading portfolios for ESS, LLM_Sentiment, Tangibility, Relevance, Composite:
+- `Portfolio/long_short_returns.csv` — daily portfolio trading returns (484 rows/trading days)
+- `Portfolio/portfolio_results.csv` — daily portfolio trading returns with place holders for Fama-French
+- `Portfolio/sharpe_ratios.csv` — annualized sharpe ratios for each signal 
+
 ## Data Files
 
 | File | Description |
@@ -68,3 +78,6 @@ Runs coverage, null-rate, distribution, and validation-correlation checks, then 
 | `data/llm_scores_daily.csv` | Daily-aggregated LLM scores *(pre-generated)* |
 | `data/validation_set.csv` | 40 hand-labeled validation headlines |
 | `data/validation_set_scored.csv` | Validation set with LLM scores |
+| `Portfolio/long_short_returns.csv`|daily portfolio trading returns (484 rows/trading days)|
+| `Portfolio/portfolio_results.csv`| daily portfolio trading returns with place holders for Fama-French |
+| `Portfolio/sharpe_ratios.csv`| annualized sharpe ratios for each signal |
