@@ -90,6 +90,7 @@ Runs regressions and generates summary statistics of Fama French
 - `Portfolio/table2_summary.csv` - summary of returns
 - `Portfolio/table3_regressions.csv` - summary stats of regression (alphas, and fama french betas)
 - `Portfolio/F-F_Research_Data_Factors_daily.csv' - daily returns table with fama french filled in
+- `Portfolio/table4_alpha_differences.csv` - alpha differences
 
 ## Data Files
 
