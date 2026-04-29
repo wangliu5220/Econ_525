@@ -79,6 +79,18 @@ Generates trading portfolios for ESS, LLM_Sentiment, Tangibility, Relevance, Com
 - `Portfolio/portfolio_results.csv` — daily portfolio trading returns with place holders for Fama-French
 - `Portfolio/sharpe_ratios.csv` — annualized sharpe ratios for each signal 
 
+### 5. Obtain Regression
+
+```bash
+python Portfolio/create_lsr_ff.py
+python Portfolio/regressions.py
+```
+
+Runs regressions and generates summary statistics of Fama French
+- `Portfolio/table2_summary.csv` - summary of returns
+- `Portfolio/table3_regressions.csv` - summary stats of regression (alphas, and fama french betas)
+- `Portfolio/F-F_Research_Data_Factors_daily.csv' - daily returns table with fama french filled in
+
 ## Data Files
 
 | File | Description |
@@ -94,3 +106,7 @@ Generates trading portfolios for ESS, LLM_Sentiment, Tangibility, Relevance, Com
 | `Portfolio/long_short_returns.csv`|daily portfolio trading returns (484 rows/trading days)|
 | `Portfolio/portfolio_results.csv`| daily portfolio trading returns with place holders for Fama-French |
 | `Portfolio/sharpe_ratios.csv`| annualized sharpe ratios for each signal |
+| `Portfolio/table2_summary.csv`| summary of returns |
+| `Portfolio/table3_regressions.csv`| summary stats of regression (alphas, and fama french betas) |
+| `Portfolio/F-F_Research_Data_Factors_daily.csv`| daily returns table with fama french filled in |
+
